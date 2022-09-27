@@ -12,6 +12,7 @@ app.get('/',(req,res)=>{
     res.status(200).json({msg: 'working!'})
 })
 
+app.use('/portfolio/en/about', require('./routes/aboutRoutes.js'))
 
 const PORT = process.env.PORT || 3001;
 connectDB()
