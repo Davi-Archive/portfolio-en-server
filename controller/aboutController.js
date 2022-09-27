@@ -44,10 +44,10 @@ const putAbout = async (req, res) => {
     throw new Error("About not found.");
   }
 
-  const updateAbout = await aboutDB.findByIdAndUpdate(res.params.id, req.body, {
+  const updateAbout = await aboutDB.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.status(200).json({ message: "Successfully updated", updateAbout });
+  res.status(200).json({ updateAbout });
 };
 
 //@desc Delete About Info
