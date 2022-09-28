@@ -13,7 +13,8 @@ const getAbout = async (req, res) => {
 //@route POST portfolio/en/about
 //@access Private
 const postAbout = async (req, res) => {
-  if (!req.body.title || !req.body.description || !req.body.imgUrl) {
+  const {title, description, imgUrl} = req.body;
+  if (!title || !description || !imgUrl) {
     res.status(400).json({
       error: "wrong requisiton format",
       correct: {
@@ -25,9 +26,9 @@ const postAbout = async (req, res) => {
   }
 
   const about = await aboutDB.create({
-    title: req.body.title,
-    description: req.body.description,
-    imgUrl: req.body.imgUrl,
+    title,
+    description,
+    imgUrl,
   });
 
   res.status(200).json({ msg: "Successfully Created", about });

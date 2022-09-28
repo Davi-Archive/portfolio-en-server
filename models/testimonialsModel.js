@@ -10,10 +10,10 @@ const mongoose = require("mongoose");
 
 const testimonialsSchema = mongoose.Schema(
   {
-    imgUrl: String,
     name: String,
     company: String,
     feedback: String,
+    imgUrl: String,
   },
   {
     timestamps: true,
