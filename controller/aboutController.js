@@ -6,7 +6,7 @@ const aboutDB = model.about;
 //@access Private
 const getAbout = async (req, res) => {
   const about = await aboutDB.find();
-  res.status(200).json({ about });
+  res.status(200).json( about );
 };
 
 //@desc Post About Info

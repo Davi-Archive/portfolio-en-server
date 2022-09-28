@@ -6,8 +6,8 @@ const workDB = model.work;
 //@route GET portfolio/en/work
 
 const getWork = async (req, res) => {
-  const find = await workDB.find();
-  res.status(200).json({ find });
+  const findWork = await workDB.find();
+  res.status(200).json(findWork);
 };
 //@desc post Work Info
 //@route POST portfolio/en/work

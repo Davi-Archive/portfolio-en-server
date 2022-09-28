@@ -6,7 +6,7 @@ const TestimonialsDB = models.testimonials;
 //@route GET portfolio/en/Testmonials
 const getTestimonials = async (req, res) => {
   const find = await TestimonialsDB.find();
-  res.status(200).json({ find });
+  res.status(200).json(find);
 };
 //@desc Add Testmonials Info
 //@route POST portfolio/en/Testmonials
@@ -45,9 +45,13 @@ const putTestimonials = async (req, res) => {
       message:
         "Wrong requisition, it needs atleast one to update: name:'',company:'',feedback:'',imgUrl:''",
     });
-  const update = await TestimonialsDB.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+  const update = await TestimonialsDB.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
   res.status(200).json({
     message: "Edited successfully",
     update,
@@ -57,10 +61,10 @@ const putTestimonials = async (req, res) => {
 //@desc Delete Testmonials Info
 //@route DELETE portfolio/en/Testmonials
 const deleteTestimonials = async (req, res) => {
-  const find = await TestimonialsDB.findById(req.params.id)
-  if(!find) return res.status(404).json({message: 'ID not found'})
+  const find = await TestimonialsDB.findById(req.params.id);
+  if (!find) return res.status(404).json({ message: "ID not found" });
 
-const deleteValue = await TestimonialsDB.findByIdAndDelete(req.params.id)
+  const deleteValue = await TestimonialsDB.findByIdAndDelete(req.params.id);
   res.status(200).json({
     message: "Sucessfully deleted",
     deleteValue,
