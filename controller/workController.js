@@ -35,7 +35,7 @@ const postWork = async (req, res) => {
         "Wrong requisition, it needs: title:'', projectLink:'', codeLink:'', imgUrl:'',  description: '', name: '', tags: '[string array]'",
     });
 
-  const create = workDB.create({
+  const create = await workDB.create({
     title,
     projectLink,
     codeLink,
@@ -69,7 +69,7 @@ const putWork = async (req, res) => {
   )
     return res.status(400).json({
       message:
-        "Wrong requisition, it needs ATLEAST ONE: title:'', projectLink:'', codeLink:'', imgUrl:'',  description: '', name: '', tags: '[string array]'",
+        "Wrong requisition, it needs ATLEAST ONE: { title:'', projectLink:'', codeLink:'', imgUrl:'',  description: '', name: '', tags: '[string array] }'",
     });
 const update = await workDB.findByIdAndUpdate(req.params.id, req.body, {new:true})
   res.status(200).json({

@@ -45,7 +45,7 @@ const putTestimonials = async (req, res) => {
       message:
         "Wrong requisition, it needs atleast one to update: name:'',company:'',feedback:'',imgUrl:''",
     });
-  const update = TestimonialsDB.findByIdAndUpdate(req.params.id, req.body, {
+  const update = await TestimonialsDB.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
   res.status(200).json({
@@ -56,11 +56,11 @@ const putTestimonials = async (req, res) => {
 
 //@desc Delete Testmonials Info
 //@route DELETE portfolio/en/Testmonials
-const deleteTestimonials = (req, res) => {
-  const find = TestimonialsDB.findById(req.params.id)
+const deleteTestimonials = async (req, res) => {
+  const find = await TestimonialsDB.findById(req.params.id)
   if(!find) return res.status(404).json({message: 'ID not found'})
 
-const deleteValue = TestimonialsDB.findByIdAndDelete(req.params.id)
+const deleteValue = await TestimonialsDB.findByIdAndDelete(req.params.id)
   res.status(200).json({
     message: "Sucessfully deleted",
     deleteValue,
