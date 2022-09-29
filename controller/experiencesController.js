@@ -5,7 +5,7 @@ const experiencesDB = models.experiences;
 //@route GET portfolio/en/experiences
 //@access Private
 const getExperiences = async (req, res) => {
-  const find = await experiencesDB.findOne();
+  const find = await experiencesDB.find();
   res.status(200).json(find);
 };
 
