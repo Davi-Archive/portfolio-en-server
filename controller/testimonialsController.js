@@ -62,10 +62,7 @@ const putTestimonials = async (req, res) => {
       new: true,
     }
   );
-  res.status(200).json({
-    message: "Edited successfully",
-    update,
-  });
+  res.status(200).json(update);
 };
 
 //@desc Delete Testmonials Info
