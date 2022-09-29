@@ -37,7 +37,14 @@ const postTestimonials = async (req, res) => {
 
 //@desc update Testmonials Info
 //@route PUT portfolio/en/Testmonials
+
+/* name": "Testimonial2",
+    "company": "Company2",
+    "feedback": "url aqui2",
+    "imgUrl": "https://raw.githubusercontent.com/davi38/portfolio-en-client/main/src/assets/profile.png", */
+
 const putTestimonials = async (req, res) => {
+  const { name, company, feedback, imgUrl } = req.body;
   const find = await TestimonialsDB.findById(req.params.id);
   if (!find) return res.status(404).json({ message: "ID not found" });
   if (!name || !company || !feedback || !imgUrl)
@@ -45,6 +52,9 @@ const putTestimonials = async (req, res) => {
       message:
         "Wrong requisition, it needs atleast one to update: name:'',company:'',feedback:'',imgUrl:''",
     });
+  if (!req.params.id)
+    return res.status(400).json({ message: "specify the ID" });
+
   const update = await TestimonialsDB.findByIdAndUpdate(
     req.params.id,
     req.body,
