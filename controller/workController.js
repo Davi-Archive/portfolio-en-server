@@ -54,12 +54,14 @@ const postWork = async (req, res) => {
 
 const putWork = async (req, res) => {
   const find = await workDB.findById(req.params.id);
-  const { title, projectLink, codeLink, imgUrl, description, name, tags } =
-    req.body;
 
   if (!find) return res.status(404).json({ message: "ID Not found." });
-  
-const update = await workDB.findByIdAndUpdate(req.params.id, req.body, {new:true})
+  if (!req.params.id)
+    return res.status(400).json({ message: "specify the ID" });
+
+  const update = await workDB.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
   res.status(200).json({
     message: "Updated Successfully.",
     req: update,
@@ -72,7 +74,7 @@ const deleteWork = async (req, res) => {
   const find = await workDB.findById(req.params.id);
   if (!find) return res.status(404).json({ message: "ID Not found." });
 
- const deleteValue = await workDB.findByIdAndDelete(req.params.id);
+  const deleteValue = await workDB.findByIdAndDelete(req.params.id);
   res.status(200).json(deleteValue);
 };
 

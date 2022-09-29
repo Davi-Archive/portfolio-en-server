@@ -38,7 +38,7 @@ const postExperiences = async (req, res) => {
       bgColor,
       icon,
       desc,
-      company
+      company,
     });
     res.status(200).json(insertValue);
   }
@@ -70,7 +70,9 @@ const deleteExperiences = async (req, res) => {
 
   if (!find) return res.status(404).json({ message: "ID not found" });
 
-  const deleteExperience = await experiencesDB.deleteOne({ _id: req.params.id });
+  const deleteExperience = await experiencesDB.deleteOne({
+    _id: req.params.id,
+  });
   res.status(200).json({ message: "Successfully deleted.", deleteExperience });
 };
 

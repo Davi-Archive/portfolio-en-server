@@ -40,16 +40,9 @@ const postSkills = async (req, res) => {
 //@route PUT portfolio/en/skills
 const putSkills = async (req, res) => {
   const find = await skillsDB.findById(req.params.id);
-  const { name, bgColor, icon } = req.body;
+  if (!find) return res.status(404).json({ message: "ID not found" });
   if (!req.params.id)
     return res.status(400).json({ message: "specify the ID" });
-  if (!name || !bgColor || !icon)
-    return res.status(400).json({
-      message:
-        "wrong requisiton format, needs: name:'', bgColor:'' and icon:''",
-    });
-  if (!find)
-    return res.status(404).json({ message: "not found on the database" });
 
   const update = await skillsDB.findByIdAndUpdate(req.params.id, req.body, {
     new: true,

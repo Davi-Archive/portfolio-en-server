@@ -40,16 +40,9 @@ const postAbout = async (req, res) => {
 
 const putAbout = async (req, res) => {
   const find = await aboutDB.findById(req.params.id);
-  const { title, description, imgUrl } = req.body;
+  if (!find) return res.status(404).json({ message: "ID not found" });
   if (!req.params.id)
     return res.status(400).json({ message: "specify the ID" });
-  if (!title || !description || !imgUrl)
-    return res.status(400).json({
-      message:
-        "wrong requisiton format, needs: 'title', 'description' and 'imgUrl'",
-    });
-  if (!find)
-    return res.status(404).json({ message: "not found on the database" });
 
   const updateAbout = await aboutDB.findByIdAndUpdate(req.params.id, req.body, {
     new: true,

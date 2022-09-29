@@ -14,14 +14,17 @@ const getForm = async (req, res) => {
 //@access Private
 const postForm = async (req, res) => {
   const { where, name, email, message } = req.body;
-  if (!where || !name || !email || !message) return res.status(400).json({message: 'missing information, need: name, where, email and message'});
-    const create = await formDB.create({
-        where,
-        name,
-        email,
-        message
-    })
-    return res.status(200).json(create)
+  if (!where || !name || !email || !message)
+    return res.status(400).json({
+      message: "missing information, need: name, where, email and message",
+    });
+  const create = await formDB.create({
+    where,
+    name,
+    email,
+    message,
+  });
+  return res.status(200).json(create);
 };
 
 module.exports = { getForm, postForm };
