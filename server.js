@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv").config({ path: "./.env" });
 const colors = require("colors");
 var cors = require("cors");
+const path = require("path");
 
 const connectDB = require("./config/db.js");
 
@@ -13,7 +14,11 @@ app.use(express.urlencoded({ extended: false }));
 
 //index of the API
 app.get("/", (req, res) => {
-  res.status(200).json({
+  res.status(200)
+  res.sendFile(path.join(__dirname, "./views/index.html"));
+
+
+  /* res.status(200).json({
     msg: "Welcome to my API, check the site it provides info:",
     API_github: "https://github.com/davi38/portfolio-en-server",
     site: {
@@ -27,7 +32,7 @@ app.get("/", (req, res) => {
       testimonials: "/portfolio/en/testimonials",
     },
     visit_my_Github: "https://github.com/davi38/",
-  });
+  }); */
 });
 
 //about section route
