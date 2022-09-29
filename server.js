@@ -11,7 +11,6 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
 //index of the API
 app.get("/", (req, res) => {
   res.status(200).json({
@@ -41,7 +40,13 @@ app.use("/portfolio/en/work", require("./routes/workRoutes.js"));
 app.use("/portfolio/en/skills", require("./routes/skillsRoutes.js"));
 
 //testimonials section route
-app.use("/portfolio/en/testimonials", require("./routes/testimonialsRoutes.js"));
+app.use(
+  "/portfolio/en/testimonials",
+  require("./routes/testimonialsRoutes.js")
+);
+
+//FORM CONTACT
+app.use("/portfolio/contact", require("./routes/formRoutes.js"));
 
 const PORT = process.env.PORT || 3001;
 connectDB();
