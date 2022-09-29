@@ -1,6 +1,6 @@
 ## Portfolio english server
 
-![image](https://user-images.githubusercontent.com/107776531/192113182-057ac3a4-f8bc-4bdd-9a17-0278b2607203.png)
+![portfolio-en](https://user-images.githubusercontent.com/107776531/193162191-ebf69254-f799-436f-9f75-274f6da6c1d9.png)
 
 
 ## Introduction
