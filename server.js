@@ -16,23 +16,6 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.status(200)
   res.sendFile(path.join(__dirname, "./views/index.html"));
-
-
-  /* res.status(200).json({
-    msg: "Welcome to my API, check the site it provides info:",
-    API_github: "https://github.com/davi38/portfolio-en-server",
-    site: {
-      portfolio_english: "not deployed yet",
-      portfolio_english_github: "https://github.com/davi38/portfolio-en-client",
-    },
-    routes: {
-      about: "/portfolio/en/about",
-      work: "/portfolio/en/work",
-      skills: "/portfolio/en/skills",
-      testimonials: "/portfolio/en/testimonials",
-    },
-    visit_my_Github: "https://github.com/davi38/",
-  }); */
 });
 
 //about section route
@@ -43,6 +26,9 @@ app.use("/portfolio/en/work", require("./routes/workRoutes.js"));
 
 //skills section route
 app.use("/portfolio/en/skills", require("./routes/skillsRoutes.js"));
+
+//experiences section route
+app.use("/portfolio/en/experiences", require("./routes/experiencesRoutes.js"));
 
 //testimonials section route
 app.use(
