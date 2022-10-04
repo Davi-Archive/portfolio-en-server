@@ -16,12 +16,12 @@ const workSchema = new mongoose.Schema(
     projectLink: {
       type: String,
       required: [true, "Provide the Link to the project."],
-      unique,
+      unique:true,
     },
     codeLink: {
       type: String,
       required: [true, "Provide the Code Link."],
-      unique,
+      unique:true,
     },
     imgUrl: {
       type: String,

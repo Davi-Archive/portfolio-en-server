@@ -35,9 +35,11 @@ app.use(
   "/portfolio/en/testimonials",
   require("./routes/testimonialsRoutes.js")
 );
-
 //FORM CONTACT
 app.use("/portfolio/contact", require("./routes/formRoutes.js"));
+
+// user Create and Login
+app.use("/user", require("./routes/userRoutes"))
 
 const PORT = process.env.PORT || 3001;
 connectDB();

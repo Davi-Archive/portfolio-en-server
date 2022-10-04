@@ -7,7 +7,7 @@ const formSchema = mongoose.Schema(
       required: [true, "Please inform where the requisiton comes from."],
     },
     name: { type: String, required: [true, "Inform the name."] },
-    email: { type: String, required: [true, "Enter the email."], unique },
+    email: { type: String, required: [true, "Enter the email."], unique:true },
     message: { type: String, required: [true, "Enter the message"] },
   },
   {

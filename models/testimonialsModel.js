@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 /* {
-      imgUrl: images.flutter,
+      imgUrl: images.flutter,Stringg
       name: "Testimonial",
       company: "Company",
       feedback: images.about01,
