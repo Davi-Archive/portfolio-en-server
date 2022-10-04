@@ -1,4 +1,3 @@
-const asyncHandler = require("express-async-handler");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const models = require("../models");
@@ -7,21 +6,19 @@ require("dotenv").config;
 
 //@desc Register new user
 //@route POST /api/users
-const registerUser = asyncHandler(async (req, res) => {
+const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
   // Check all fields to not be empty
   if (!name || !email || !password) {
-    res.status(400);
-    throw new Error("Please add all fields");
+    res.status(400).json({ message: "Please add all fields" });
   }
 
   // Check if user Exists
 
   const userExists = await userDB.findOne({ email });
   if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
+    res.status(400).json({ message: "User already exists" });
   }
 
   // Hash password
@@ -43,10 +40,9 @@ const registerUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data.");
+    res.status(400).json({ message: "Invalid user data." });
   }
-});
+};
 
 // Generate JWT token for the database
 const generateToken = (id) => {
@@ -57,7 +53,7 @@ const generateToken = (id) => {
 
 //@desc Authenticate User
 //@route POST /api/users/login
-const loginUser = asyncHandler(async (req, res) => {
+const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   const user = await userDB.findOne({ email });
@@ -70,21 +66,20 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid Credentials");
+    res.status(400).json({ message: "Invalid Credentials" });
   }
-});
+};
 
 //@desc Get user data
 //@route POST /api/users/me
 //@access PRIVATE
-const getUserData = asyncHandler(async (req, res) => {
+const getUserData = async (req, res) => {
   const { _id, name, email } = await userDB.findById(req.user.id);
   res.status(200).json({
     id: _id,
     name,
     email,
   });
-});
+};
 
 module.exports = { registerUser, getUserData, loginUser };
