@@ -10,10 +10,19 @@ const mongoose = require("mongoose");
 
 const testimonialsSchema = mongoose.Schema(
   {
-    name: String,
-    company: String,
-    feedback: String,
-    imgUrl: String,
+    name: {
+      type: String,
+      required: [true, "Provide the of the Testimonial Author"],
+    },
+    company: {
+      type: String,
+      required: [true, "Provide the company of the Author"],
+    },
+    feedback: { type: String, required: [true, "Provide the Testimonial"] },
+    imgUrl: {
+      type: String,
+      required: [true, "Provide the Image for the Testimonial"],
+    },
   },
   {
     timestamps: true,
