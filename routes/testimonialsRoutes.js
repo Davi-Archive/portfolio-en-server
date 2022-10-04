@@ -1,10 +1,16 @@
-const express = require('express')
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
+const controller = require("../controller");
 
-const controller = require('../controller')
+router
+  .route("/")
+  .get(controller.getTestimonials)
+  .post(protect, controller.postTestimonials);
 
-router.route("/").get(controller.getTestimonials).post(controller.postTestimonials);
-
-router.route("/:id").put(controller.putTestimonials).delete(controller.deleteTestimonials);
+router
+  .route("/:id")
+  .put(protect, controller.putTestimonials)
+  .delete(protect, controller.deleteTestimonials);
 
 module.exports = router;

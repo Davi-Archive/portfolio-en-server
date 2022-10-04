@@ -1,7 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const { protect } = require("../middleware/authMiddleware");
 const controller = require('../controller')
 
-router.route('/').get(controller.getForm).post(controller.postForm)
+router
+  .route("/")
+  .get(protect, controller.getForm)
+  .post(controller.postForm);
 
 module.exports = router;

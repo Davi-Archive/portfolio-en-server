@@ -1,11 +1,13 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
+const controller = require("../controller");
+const { protect } = require("../middleware/authMiddleware");
 
-const controller = require('../controller')
+router.route("/").get(controller.getAbout).post(protect, controller.postAbout);
 
-router.route("/").get(controller.getAbout).post(controller.postAbout);
-
-router.route("/:id").put(controller.putAbout).delete(controller.deleteAbout);
-
+router
+  .route("/:id")
+  .put(protect, controller.putAbout)
+  .delete(protect, controller.deleteAbout);
 
 module.exports = router;
