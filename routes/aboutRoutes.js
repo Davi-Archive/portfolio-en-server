@@ -8,6 +8,7 @@ router.route("/").get(controller.getAbout).post(protect, controller.postAbout);
 router
   .route("/:id")
   .put(protect, controller.putAbout)
-  .delete(protect, controller.deleteAbout);
+  .delete(protect, controller.deleteAbout)
+  .get(controller.getOneAbout);
 
 module.exports = router;

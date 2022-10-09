@@ -9,6 +9,15 @@ const getAbout = async (req, res) => {
   res.status(200).json(about);
 };
 
+//@desc Get ONE ABOUT
+//@route GET portfolio/en/about/:id
+//@access Public
+const getOneAbout = async (req, res) => {
+  const id = req.params.id;
+  const data = await aboutDB.findById(id);
+  res.status(200).json(data);
+};
+
 //@desc Post About Info
 //@route POST portfolio/en/about
 //@access Private
@@ -62,4 +71,4 @@ const deleteAbout = async (req, res) => {
   res.status(200).json({ message: "Successfully deleted", deleted });
 };
 
-module.exports = { getAbout, postAbout, putAbout, deleteAbout };
+module.exports = { getAbout, getOneAbout, postAbout, putAbout, deleteAbout };
