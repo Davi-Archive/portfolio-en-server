@@ -11,6 +11,7 @@ router
 router
   .route("/:id")
   .put(protect, controller.putExperiences)
-  .delete(protect, controller.deleteExperiences);
+  .delete(protect, controller.deleteExperiences)
+  .get(controller.getOneExperience);
 
 module.exports = router;

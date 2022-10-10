@@ -11,6 +11,7 @@ router
 router
   .route("/:id")
   .put(protect, controller.putTestimonials)
-  .delete(protect, controller.deleteTestimonials);
+  .delete(protect, controller.deleteTestimonials)
+  .get(controller.getOneTestimonial)
 
 module.exports = router;

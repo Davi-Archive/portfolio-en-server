@@ -2,14 +2,24 @@ const models = require("../models");
 //call model schema
 const TestimonialsDB = models.testimonials;
 
-//@desc Get Testmonials Info
-//@route GET portfolio/en/Testmonials
+
+//@desc Get ONE Testimonial
+//@route GET portfolio/en/testimonials/:id
+//@access Public
+const getOneTestimonial = async (req, res) => {
+  const id = req.params.id;
+  const data = await TestimonialsDB.findById(id);
+  res.status(200).json(data);
+};
+
+//@desc Get testimonials Info
+//@route GET portfolio/en/testimonials
 const getTestimonials = async (req, res) => {
   const find = await TestimonialsDB.find();
   res.status(200).json(find);
 };
-//@desc Add Testmonials Info
-//@route POST portfolio/en/Testmonials
+//@desc Add testimonials Info
+//@route POST portfolio/en/testimonials
 /*  name: String,
     company: String,
     feedback: String,
@@ -35,8 +45,8 @@ const postTestimonials = async (req, res) => {
   });
 };
 
-//@desc update Testmonials Info
-//@route PUT portfolio/en/Testmonials
+//@desc update testimonials Info
+//@route PUT portfolio/en/testimonials
 
 /* name": "Testimonial2",
     "company": "Company2",
@@ -59,8 +69,8 @@ const putTestimonials = async (req, res) => {
   res.status(200).json(update);
 };
 
-//@desc Delete Testmonials Info
-//@route DELETE portfolio/en/Testmonials
+//@desc Delete testimonials Info
+//@route DELETE portfolio/en/testimonials
 const deleteTestimonials = async (req, res) => {
   const find = await TestimonialsDB.findById(req.params.id);
   if (!find) return res.status(404).json({ message: "ID not found" });
@@ -73,6 +83,7 @@ const deleteTestimonials = async (req, res) => {
 };
 
 module.exports = {
+  getOneTestimonial,
   getTestimonials,
   postTestimonials,
   putTestimonials,

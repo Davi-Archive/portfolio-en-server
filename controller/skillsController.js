@@ -61,4 +61,19 @@ const deleteSkills = async (req, res) => {
   res.status(200).json({ message: "Successfully deleted.", deleteSkill });
 };
 
-module.exports = { getSkills, postSkills, putSkills, deleteSkills };
+//@desc Get ONE skill
+//@route GET portfolio/en/skill/:id
+//@access Public
+const getOneSkill = async (req, res) => {
+  const id = req.params.id;
+  const data = await skillsDB.findById(id);
+  res.status(200).json(data);
+};
+
+module.exports = {
+  getOneSkill,
+  getSkills,
+  postSkills,
+  putSkills,
+  deleteSkills,
+};

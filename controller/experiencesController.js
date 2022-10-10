@@ -76,7 +76,17 @@ const deleteExperiences = async (req, res) => {
   res.status(200).json({ message: "Successfully deleted.", deleteExperience });
 };
 
+//@desc Get ONE experiences
+//@route GET portfolio/en/experiences/:id
+//@access Public
+const getOneExperience = async (req, res) => {
+  const id = req.params.id;
+  const data = await experiencesDB.findById(id);
+  res.status(200).json(data);
+};
+
 module.exports = {
+  getOneExperience,
   getExperiences,
   postExperiences,
   putExperiences,

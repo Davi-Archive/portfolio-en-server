@@ -78,4 +78,13 @@ const deleteWork = async (req, res) => {
   res.status(200).json(deleteValue);
 };
 
-module.exports = { getWork, postWork, putWork, deleteWork };
+//@desc Get ONE WORK
+//@route GET portfolio/en/work/:id
+//@access Public
+const getOneWork = async (req, res) => {
+  const id = req.params.id;
+  const data = await workDB.findById(id);
+  res.status(200).json(data);
+};
+
+module.exports = { getOneWork, getWork, postWork, putWork, deleteWork };

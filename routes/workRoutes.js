@@ -8,6 +8,7 @@ router.route("/").get(controller.getWork).post(protect, controller.postWork);
 router
   .route("/:id")
   .put(protect, controller.putWork)
-  .delete(protect, controller.deleteWork);
+  .delete(protect, controller.deleteWork)
+  .get(controller.getOneWork);
 
 module.exports = router;

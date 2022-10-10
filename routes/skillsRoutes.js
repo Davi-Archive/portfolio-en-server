@@ -11,6 +11,7 @@ router
 router
   .route("/:id")
   .put(protect, controller.putSkills)
-  .delete(protect, controller.deleteSkills);
+  .delete(protect, controller.deleteSkills)
+  .get(controller.getOneSkill);
 
 module.exports = router;
