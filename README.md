@@ -5,7 +5,7 @@
 
 ## Introduction
 
-This is the code for my portfolio server that gives data for the frontend located at https://portfolio-en-client.vercel.app/
+This is the code for my portfolio server that gives data for the frontend located at https://portfolio-davi.vercel.app/
 
 
 ## Live Version
