@@ -1,7 +1,7 @@
 const model = require("../models");
 const formDB = model.form;
 
-//@desc Get Contact messsages Info
+//@desc Get Contact messages Info
 //@route GET portfolio/contact
 //@access Private
 const getForm = async (req, res) => {
@@ -9,9 +9,9 @@ const getForm = async (req, res) => {
   return res.status(200).json(find);
 };
 
-//@desc Get About Info
-//@route GET portfolio/contact
-//@access Private
+//@desc Post one form
+//@route POST portfolio/contact
+//@access Public
 const postForm = async (req, res) => {
   const { where, name, email, message } = req.body;
   if (!where || !name || !email || !message)
@@ -27,4 +27,19 @@ const postForm = async (req, res) => {
   return res.status(200).json(create);
 };
 
-module.exports = { getForm, postForm };
+//@desc Delete one form
+//@route DELETE portfolio/contact/:id
+//@access Private
+const deleteForm = async (req, res) => {
+  const id = req.params.id;
+  const search = await formDB.findById(id);
+
+  if (!search) {
+    return res.status(404).json({ message: "ID not found." });
+  }
+
+  const deleteById = await formDB.findByIdAndDelete(id);
+  return res.status(200).json(deleteById);
+};
+
+module.exports = { deleteForm, getForm, postForm };
